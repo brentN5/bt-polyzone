@@ -1,6 +1,4 @@
 # bt-polyzone
- 
-Extension to mkafrin's PolyZone.
 
 Dependencies: https://github.com/mkafrin/PolyZone
 

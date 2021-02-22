@@ -2,6 +2,10 @@ fx_version 'adamant'
 
 game 'gta5'
 
+dependencies {
+    "PolyZone"
+}
+
 client_scripts {
     '@PolyZone/client.lua',
     '@PolyZone/BoxZone.lua',

@@ -40,6 +40,6 @@ function AddBoxZone(name, center, length, width, options)
     Zones[name] = BoxZone:Create(center, length, width, options)
 end
 
-function AddPolyzone(name, points, options)
+function AddPolyZone(name, points, options)
     Zones[name] = PolyZone:Create(points, options)
 end

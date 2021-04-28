@@ -18,5 +18,5 @@ client_scripts {
 exports {
     'AddCircleZone',
     'AddBoxZone',
-    'AddPolyzone'
+    'AddPolyZone'
 }

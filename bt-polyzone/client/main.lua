@@ -1,5 +1,5 @@
-local inzone = false
 local Zones = {}
+local insideZones = {}
 
 Citizen.CreateThread(function()
     while true do
@@ -10,33 +10,36 @@ Citizen.CreateThread(function()
 
         for _, zone in pairs(Zones) do
             if Zones[_]:isPointInside(coord) then
-
-                inzone = true
-
-                TriggerEvent("bt-polyzone:enter", _)
-
-                while inzone do
-                    local plyPed = PlayerPedId()
-                    local InZoneCoordS = GetEntityCoords(plyPed)
-
-                    if not Zones[_]:isPointInside(InZoneCoordS) then 
-                        inzone = false
-                    end
-
-                    Citizen.Wait(250)
+                if (not insideZones[_]) then
+                    insideZones[_] = true
+                    local insideZone = true
+                    Citizen.CreateThread(function()
+                        TriggerEvent("bt-polyzone:enter", _)
+                        while insideZone do
+                            local plyPed = PlayerPedId()
+                            local InZoneCoordS = GetEntityCoords(plyPed)
+        
+                            if not Zones[_]:isPointInside(InZoneCoordS) then 
+                                insideZone = false
+                                insideZones[_] = false
+                                TriggerEvent("bt-polyzone:exit", _)
+                            end
+                            Citizen.Wait(250)
+                        end
+                    end)
                 end
-
-                TriggerEvent("bt-polyzone:exit", _)
             end
         end
     end
 end)
 
 function AddCircleZone(name, center, radius, options)
+    center = vector3(center.x, center.y, center.z)
     Zones[name] = CircleZone:Create(center, radius, options)
 end
 
 function AddBoxZone(name, center, length, width, options)
+    center = vector3(center.x, center.y, center.z)
     Zones[name] = BoxZone:Create(center, length, width, options)
 end
 

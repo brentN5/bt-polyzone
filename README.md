@@ -6,7 +6,7 @@ Example For MRPD:
 
 exports:
 
-```
+```lua
 exports["bt-polyzone"]:AddBoxZone("PoliceTrashMRPD", vector3(472.88, -996.92, 26.27), 1.6, 1.2, {
     name="PoliceTrashMRPD",
     heading=0,
@@ -42,8 +42,7 @@ exports["bt-polyzone"]:AddBoxZone("PoliceFingerprintMRPD", vector3(474.04, -1013
 
 Listens to when player enters zone
 
-```
-RegisterNetEvent('bt-polyzone:enter')
+```lua
 AddEventHandler('bt-polyzone:enter', function(name)
     if name == "PoliceTrashMRPD" then
 
@@ -59,8 +58,7 @@ end)
 
 Listens to when player leaves zone
 
-```
-RegisterNetEvent('bt-polyzone:exit')
+```lua
 AddEventHandler('bt-polyzone:exit', function(name)
     if name == "PoliceTrashMRPD" then
 

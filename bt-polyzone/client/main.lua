@@ -46,3 +46,10 @@ end
 function AddPolyZone(name, points, options)
     Zones[name] = PolyZone:Create(points, options)
 end
+
+function RemoveZone(name)
+    if Zones[name] then
+        print('Deleting polyzone: ', name)
+        Zones[name] = nil
+    end
+end
